@@ -22,7 +22,7 @@ angular.module('ngDfp', [])
      */
     var sizeMapping = {};
 
-    /** 
+    /**
      If configured, all ads will be refreshed at the same interval
      */
     var refreshInterval = null;
@@ -60,7 +60,7 @@ angular.module('ngDfp', [])
       gads.async = true;
       gads.type  = 'text/javascript';
       gads.src   = (useSSL ? 'https:' : 'http:') + ngDfpUrl;
-      
+
       // Insert before any JS include.
       node.parentNode.insertBefore(gads, node);
 
@@ -120,7 +120,7 @@ angular.module('ngDfp', [])
 
     this._slotRenderEnded = function (event) {
       var callback = slots[event.slot.getSlotId().getDomId()].renderCallback;
-      
+
       if (typeof callback === 'function') {
         callback();
       }
@@ -188,7 +188,7 @@ angular.module('ngDfp', [])
       if(!sizeMapping[id]){
         sizeMapping[id] = [];
       }
-      
+
       // Add a new size mapping ( [browser size], [slot size])
       this.addSize = function() {
         sizeMapping[id].push([arguments[0], arguments[1]]);
@@ -224,6 +224,7 @@ angular.module('ngDfp', [])
     // Public factory API.
     var self  = this;
     this.$get = ['$q', '$window', '$interval', function ($q, $window, $interval) {
+      console.log('called provider func');
       // Neat trick from github.com/mllrsohn/angular-re-captcha
       var deferred = $q.defer();
 
@@ -240,11 +241,11 @@ angular.module('ngDfp', [])
 
         deferred.resolve();
       });
-      
+
       return {
         /**
-         More than just getting the ad size, this 
-         allows us to wait for the JS file to finish downloading and 
+         More than just getting the ad size, this
+         allows us to wait for the JS file to finish downloading and
          configuring ads
 
          @deprecated Use getSlot().getSize() instead.
@@ -364,7 +365,7 @@ angular.module('ngDfp', [])
 
             element.css('width', size[0]).css('height', size[1]);
             $timeout(function () {
-              DoubleClick.runAd(id);
+              DoubleClick.runAd(id, );
             });
 
             // Only if we have a container we hide this thing
@@ -422,4 +423,3 @@ angular.module('ngDfp', [])
       }
     };
   }]);
- 
