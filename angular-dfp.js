@@ -77,6 +77,7 @@ angular.module('ngDfp', [])
      Initializes and configures the slots that were added with defineSlot.
      */
     this._initialize = function () {
+      console.log('initializing');
       var self = this;
       // when the GPT JavaScript is loaded, it looks through the array and executes all the functions in order
       googletag.cmd.push(function() {
@@ -224,7 +225,6 @@ angular.module('ngDfp', [])
     // Public factory API.
     var self  = this;
     this.$get = ['$q', '$window', '$interval', function ($q, $window, $interval) {
-      console.log('called provider func');
       // Neat trick from github.com/mllrsohn/angular-re-captcha
       var deferred = $q.defer();
 
@@ -302,7 +302,9 @@ angular.module('ngDfp', [])
           googletag.cmd.push(function() {
             $window.googletag.pubads().refresh(slots);
           });
-        }
+        },
+
+        refreshTargeting: self._initialize.bind(self)
       };
     }];
   }])
