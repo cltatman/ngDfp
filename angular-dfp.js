@@ -367,7 +367,7 @@ angular.module('ngDfp', [])
 
             element.css('width', size[0]).css('height', size[1]);
             $timeout(function () {
-              DoubleClick.runAd(id, );
+              DoubleClick.runAd(id);
             });
 
             // Only if we have a container we hide this thing
